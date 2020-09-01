@@ -1,22 +1,24 @@
-const person = {
-    name: 'Joe',
-    age: 67,
-    greet() {
-        console.log("Hi I'm " + this.name);
-    }
-};
+// callbacks - functions that take functions as arguments
+const fetchData = callback => { //fetchData takes a function called callback as its argument
+    setTimeout(() => {
+        callback('Callback is done');   // callback is passed a text argument
+    }, 1500);
+}
 
-const hobbies = ['Sports','Singing'];
+const logText = someText => {
+    console.log(someText);
+}
 
-hobbies.push('Home Renovation');
+setTimeout(( ) => {
+    console.log('Timer is done');
+    // fetchData(text => {             // fetchData is called with an anonymous function definition
+    //     console.log(text);
+    // });
+    console.log('calling logText');
+    fetchData(logText);                 // fetchData is called with an function reference
+}, 1000);
 
-console.log(hobbies);
+setTimeout( ( ) => {
+}, 1000);
 
-// deconstructing - like spread in that array ( [] ) or object ( {} ) context must be provided
-//                - different in that you specify the members you want
-//                - ojbect deconstruction - use property names
-//                - array deconstruction - use position
-
-const [, index1, index2] = hobbies; // this will get unwieldy with large arrays!
-                                    // expecting 'Singing, Home Renovation'
-console.log(index1, index2);
+console.log('Hello');
