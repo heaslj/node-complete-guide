@@ -8,9 +8,13 @@
     "start": "nodemon app.js",
     "start-server": "node app.js"
   },
-  "author": "Maximilian Schwarzmüller",
+  "author": "Joe Heasly",
   "license": "ISC",
   "devDependencies": {
     "nodemon": "^1.18.3"
+  },
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.17.1"
   }
 }
