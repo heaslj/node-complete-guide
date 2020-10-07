@@ -13,28 +13,30 @@ class Product {
 
   save() {
     const db = getDb();
-    let saveOperation;
-    if(this._id) {
-      // product exists, so update
-      saveOperation = db.collection('products')
-      .updateOne( {_id: this._id}, {$set: this});
+    let dbOp;
+    if (this._id) {
+      // Update the product
+      dbOp = db
+        .collection('products')
+        .updateOne({ _id: this._id }, { $set: this });
     } else {
-      saveOperation = db.collection('products')
-      .insertOne(this)
+      dbOp = db.collection('products').insertOne(this);
     }
-    return saveOperation
-    .then( result => {
-      console.log(result);
-    })
-    .catch( err => {
-      console.log(err);
-    });
+    return dbOp
+      .then(result => {
+        console.log(result);
+      })
+      .catch(err => {
+        console.log(err);
+      });
   }
 
   static fetchAll() {
     const db = getDb();
-    return db.collection('products')
-      .find().toArray()
+    return db
+      .collection('products')
+      .find()
+      .toArray()
       .then(products => {
         console.log(products);
         return products;
@@ -46,8 +48,10 @@ class Product {
 
   static findById(prodId) {
     const db = getDb();
-    return db.collection('products')
-      .findOne( {_id: new mongodb.ObjectId(prodId)} )
+    return db
+      .collection('products')
+      .find({ _id: new mongodb.ObjectId(prodId) })
+      .next()
       .then(product => {
         console.log(product);
         return product;
@@ -59,14 +63,15 @@ class Product {
 
   static deleteById(prodId) {
     const db = getDb();
-    return db.collection('products')
-    .deleteOne( { _id: new mongodb.ObjectId(prodId)} )
-    .then(result => {
-      console.log('Deleted product: ', prodId);
-    })
-    .catch(err => {
-      console.log(err);
-    });
+    return db
+      .collection('products')
+      .deleteOne({ _id: new mongodb.ObjectId(prodId) })
+      .then(result => {
+        console.log('Deleted');
+      })
+      .catch(err => {
+        console.log(err);
+      });
   }
 }
 
