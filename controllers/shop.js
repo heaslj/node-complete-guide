@@ -1,6 +1,5 @@
 const Product = require('../models/product');
 const Order = require('../models/order');
-const mongoose = require('mongoose');
 
 exports.getProducts = (req, res, next) => {
   Product.find()
@@ -48,8 +47,6 @@ exports.getIndex = (req, res, next) => {
 };
 
 exports.getCart = (req, res, next) => {
-  console.log('session in getCart: ', req.session);
-  console.log('user instanceof mongoose.Model? ', req.user instanceof mongoose.Model);
   req.user
     .populate('cart.items.productId')
     .execPopulate()

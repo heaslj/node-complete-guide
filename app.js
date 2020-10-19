@@ -10,7 +10,7 @@ const errorController = require('./controllers/error');
 const User = require('./models/user');
 
 const MONGODB_URI =
-  'mongodb+srv://node-user:<PASSWORD>@completenodejs-cluster0.wdl2t.mongodb.net/shop?w=majority';
+  'mongodb+srv://maximilian:9u4biljMQc4jjqbe@cluster0-ntrwp.mongodb.net/shop';
 
 const app = express();
 const store = new MongoDBStore({
@@ -36,19 +36,13 @@ app.use(
   })
 );
 
-app.use( (req, res, next ) => {
-  if(!req.session.user) {
-    console.log('app.js: No user found in session.');
+app.use((req, res, next) => {
+  if (!req.session.user) {
     return next();
   }
   User.findById(req.session.user._id)
     .then(user => {
-      if (user) {
-        req.user = user;
-        console.log('session in app.js: ', req.session);
-      } else {
-        console.log('User not found!');
-      }
+      req.user = user;
       next();
     })
     .catch(err => console.log(err));
@@ -66,8 +60,8 @@ mongoose
     User.findOne().then(user => {
       if (!user) {
         const user = new User({
-          name: 'Joe',
-          email: 'joe@heasly.com',
+          name: 'Max',
+          email: 'max@test.com',
           cart: {
             items: []
           }
