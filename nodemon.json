@@ -1,8 +1,8 @@
 {
     "env": {
-        "MONGO_USER": "maximilian",
-        "MONGO_PASSWORD": "9u4biljMQc4jjqbe",
+        "MONGO_USER": "node-user",
+        "MONGO_PASSWORD": "<PASSWORD>",
         "MONGO_DEFAULT_DATABASE": "shop",
-        "STRIPE_KEY": "sk_test_T8OE02SHDZWLwk4TYtrWlsat"
+        "STRIPE_KEY": "<API-KEY>"
     }
 }
