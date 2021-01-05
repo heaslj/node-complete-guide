@@ -1,4 +1,5 @@
 node_modules
-*.jpg
-*.png
-*.pdf
+invoices
+images
+server.cert
+server.key
